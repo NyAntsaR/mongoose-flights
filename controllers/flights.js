@@ -1,4 +1,5 @@
 var Flight = require('../models/flight');
+var Ticket = require('../models/ticket');
 
 module.exports = {
     index,
@@ -14,22 +15,29 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    Flight.findById(req.params.id, function(err, flight) {
-      res.render('flights/show', { title: 'Flight Detail', flight });
+    Flight.findById(req.params.id)
+    .populate('flight').exec(function(err, flight) {
+      // Performer.find({}).where('_id').nin(movie.cast)
+      Ticket.find({_id: {$nin: flight.flight}})
+      .exec(function(err, tickets) {
+        console.log(tickets);
+        res.render('flights/show', {
+          title: 'Flight Detail', flight, tickets
+        });
+      });
     });
   }
+  
 
 function newFlight(req, res){
     res.render('flights/new', { title: 'Add Flight'});
 }
 
 function create(req, res){
-    
     var flight = new Flight(req.body);
     flight.save(function(err) {
-        // one way to handle errors
-        // if (err) return res.render('/flights/new');
-        // console.log(flight);
-        res.redirect('/flights');
+        //handle errors
+        if (err) return res.render('/flights/new');
+        res.redirect(`/flights/${flight._id}`);
   });
 } 

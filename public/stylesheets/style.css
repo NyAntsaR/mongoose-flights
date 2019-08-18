@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  font-family: Helvetica;
-  color: #424748;
+  font-family: "Times New Roman", Times, serif;
+  color: #113A60;
 }
 
 body {
@@ -9,6 +9,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-rows: 50px 1fr;
+  font-size: 20px;
   grid-template-areas: 
     "nav"
     "main"
@@ -16,7 +17,7 @@ body {
 
 body > nav {
   grid-area: nav;
-  background-color: #B8C0C2;
+  background-color: #113A60;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -24,9 +25,13 @@ body > nav {
 }
 
 nav > img {
-  width: 34px;
+  width: 110px;
   object-fit: contain;
   margin-right: auto;
+}
+
+h1 {
+  border-bottom: 5px solid gray;
 }
 
 body > main {
@@ -34,7 +39,7 @@ body > main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #E8ECEB;
+  background-color:#DBE0E4;
   padding: 20px;
   overflow-y: scroll;
 }
@@ -44,6 +49,7 @@ body > main h1:first-child {
 }
 
 nav > a {
+  color: white;
   margin: 20px;
   text-decoration: none;
   padding: 10px;
@@ -52,11 +58,26 @@ nav > a {
 
 nav > a:hover {
   color: white;
-  background-color: #424748;
+  background-color: red;
 }
 
 nav > a.active {
   color: white;
+}
+
+label {
+  font-size: 20px;
+}
+
+select {
+  width: 200px;
+  height: 30px;
+  border: 2px solid red;
+  font-size: 15px;
+}
+
+p{
+  font-weight: bold;
 }
 
 #new-form {
@@ -65,7 +86,7 @@ nav > a.active {
   grid-template-columns: repeat(2, minmax(auto, 22rem));
 }
 
-#new-form *, #add-review-form * {
+#new-form *, #add-destination-form * {
   font-size: 20px;
   padding: 5px;
   border-radius: 5px;
@@ -75,6 +96,8 @@ nav > a.active {
   grid-column: span 2;
   width: 10rem;
   margin-left: auto;
+  background-color: red;
+  color: white;
 }
 
 table {
@@ -89,6 +112,7 @@ table thead th {
 table td {
   padding: 10px;
   text-align: center;
+  border-bottom: 2px dashed gray;
 }
 
 #list td:nth-child(2), #list td:nth-child(3){
@@ -97,14 +121,15 @@ table td {
 
 #list a {
   border-radius: 4px;
-  background-color: #B8C0C2;
+  background-color: red;
   padding: 4px;
   text-decoration: none;
   font-size: 14px;
+  color: white;
 }
 
 #list a:hover {
-  background-color: white;
+  background-color:#113A60;
 }
 
 #show-page {
@@ -117,14 +142,55 @@ table td {
   font-weight: bold;
 }
 
-#add-review-form {
+#add-destination-form {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 1rem;
   margin-bottom: 2rem;
 }
 
-#add-review-form input[type="submit"] {
-  width: 8rem;
+#add-destination-form input[type="submit"] {
+  width: 10rem;
   grid-column: 2 / 3;
+  background-color: red;
+  color: white;
 }
+
+#add-ticket-form {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#add-ticket-form input {
+  width: 20rem;
+  grid-column: 2 / 3;
+  color: #113A60;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 20px;
+}
+
+
+#add-ticket-form input[type="submit"] {
+  width: 11rem;
+  grid-column: 2 / 3;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 20px;
+}
+
+#ticket {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  height: 31px;
+  font-size: 20px;
+}
+
+
+
+

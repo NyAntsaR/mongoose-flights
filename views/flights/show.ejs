@@ -5,21 +5,27 @@
   <div><%= flight.airline %></div>
   <div>Flight Number: </div>
   <div><%= flight.flightNo %></div>
-  <div>Departure: </div>
-  <div><%= flight.departs %></div>
-  <div>Airport: </div>
+  <div>Airport </div>
   <div><%= flight.airport %></div>
+  <div>Ticket:</div>
+  <ul>
+    <%- flight.flight.map(t => 
+      `<li>${t.seat} ${t.price}</li>`
+    ).join('') %>
+  </ul>
 </section>
 
-<br><br><h2>Add Destination</h2>
+<form id="add-ticket-to-flight" action="/flights/<%= flight._id%>/tickets" method="POST">
+  <select name="ticketId">
+    <%- tickets.map(t => `<option value="${t._id}">${t.seat}</option>`).join('') %>
+  </select>
+  <button id="ticket" type="submit">Add to Ticket</button>
+</form>
+
+<br><br><h2>Destination</h2>
 <form id="add-destination-form" method="POST"
   action="/flights/<%= flight._id %>/destinations">
-  
-  <label>Date/Time: </label>
-  <input type='datetime-local' name="arrival">
-  <br>
-
-  <label>Destination:</label>
+  <label>Airport:</label>
   <select name="airport">
     <option value="AUS">AUS</option>
     <option value="DAL">DAL</option>
@@ -27,29 +33,31 @@
     <option value="SEA">SEA</option>
   </select>
 
-  <input type="submit" value="Add Flight">
+  <label>Arrival:</label>
+  <input type='datetime-local' name="arrival">
+  <input type="submit" value="Add Destination">
 </form>
 
 <% if (flight.destinations.length) { %>
-  <h2>Destination</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Airport</th>
-          <th>Arrival Date and Time</th>
-        </tr>
-      </thead>
-      <tbody>
+  <table>
+    <thead>
+      <tr>
+      	<th>Airport</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
         <% flight.destinations.forEach(function(d) { %>
           <tr>
             <td><%= d.airport %></td>
             <td><%= d.arrival %></td>
           </tr>
         <% }); %>
-      </tbody>
-    </table>
-  <% } else { %>
-    <h5>No Destination Yet</h5>
-  <% } %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Destination Yet</h5>
+<% } %>
+
 
 <%- include('../partials/footer') %>
