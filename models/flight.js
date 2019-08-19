@@ -34,7 +34,9 @@ var flightSchema = new Schema ({
     
     destinations: [destinationSchema],
 
-    flight: [{ type: Schema.Types.ObjectId, ref: 'Flight'}]
+    
 });
 
-module.exports = mongoose.model('Flight', flightSchema);
+const Flight =  mongoose.model('Flight', flightSchema);
+
+module.exports = Flight;
