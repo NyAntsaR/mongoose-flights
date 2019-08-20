@@ -9,9 +9,21 @@ module.exports = {
 };
 
 function index(req, res) {
-    Flight.find({}, function(err, flights) {
-        res.render('flights/index', { title: 'All Flights', flights });
-    });
+    // Flight.find({}, function(err, flights) {
+    //     res.render('flights/index', { title: 'All Flights', flights });
+    // });
+    Flight.find({})
+    .sort({ departs: 'asc'})
+    .then(function(flights){
+      console.log(flights);
+      res.render('flights/index', { title: 'All Flights', flights });
+    })
+    .catch(function(err){
+      console.log(err);
+      res.render('flights/index', {
+        message: err
+      });
+    })
 }
 
 function show(req, res) {
